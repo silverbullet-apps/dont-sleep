@@ -1,0 +1,19 @@
+"$schema" = "node_modules/wrangler/config-schema.json"
+name = "dontsleep-client"
+main = ".output/server/index.mjs"
+compatibility_date = "2025-06-25"
+compatibility_flags = [ "nodejs_compat" ]
+
+[assets]
+directory = ".output/public"
+
+[observability]
+enabled = true
+
+# Production environment (default)
+[env.production]
+name = "dontsleep-client"
+
+# Staging environment
+[env.staging]
+name = "dontsleep-client-staging"

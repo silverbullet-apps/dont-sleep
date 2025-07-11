@@ -83,10 +83,34 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func updateStatusIcon() {
         guard let statusItem = statusItem else { return }
         
-        let iconName = sleepPreventer.isPreventingSleep ? "sun.max.fill" : "moon.fill"
+        // Using more beautiful system symbols
+        let iconName = sleepPreventer.isPreventingSleep ? "sun.max.fill" : "moon.stars.fill"
+        
+        // Alternative sun icons you can try:
+        // "sun.max.fill" - Classic sun with rays (current)
+        // "sun.min.fill" - Smaller sun with shorter rays
+        // "sun.dust.fill" - Sun with dust/particles
+        // "sun.haze.fill" - Sun with haze effect
+        // "light.max" - Simple light bulb icon
+        // "bolt.fill" - Lightning bolt for energy/awake
+        
         let image = NSImage(systemSymbolName: iconName, accessibilityDescription: nil)
-        image?.size = NSSize(width: 18, height: 18)
+        
+        // Increase size for better clarity on external displays
+        image?.size = NSSize(width: 20, height: 20)
+        
+        // Ensure template rendering for proper menu bar appearance
+        image?.isTemplate = true
+        
         statusItem.button?.image = image
+        
+        // Alternative: Use custom icons from Assets.xcassets
+        // Uncomment the lines below and comment out the system symbol lines above
+        // let iconName = sleepPreventer.isPreventingSleep ? "SunIcon" : "MoonIcon"
+        // let image = NSImage(named: iconName)
+        // image?.size = NSSize(width: 20, height: 20)
+        // image?.isTemplate = true
+        // statusItem.button?.image = image
         
         // Update menu item title
         if let menu = statusItem.menu,
