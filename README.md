@@ -31,6 +31,17 @@ A simple and lightweight menu bar app for macOS that prevents your Mac from goin
 3. Launch DontSleep from Applications
 4. The app will appear in your menu bar
 
+## 🔐 macOS Security Warning
+
+When you first run DontSleep, macOS might show a security warning saying the app cannot be verified. This is normal for apps not distributed through the Mac App Store.
+
+**To open DontSleep safely:**
+1. **Right-click** on the DontSleep app
+2. Select **"Open"** from the context menu
+3. Click **"Open"** in the security dialog
+
+The app is completely safe - all source code is available for review on GitHub! For more details, see [SECURITY_GUIDE.md](SECURITY_GUIDE.md).
+
 ## Usage
 
 ### Basic Usage

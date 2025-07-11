@@ -26,13 +26,20 @@ function Home() {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-600 mb-6 max-w-3xl mx-auto">
             Keep your Mac awake when you need it. A simple, elegant menu bar app
             that prevents sleep.
           </p>
 
+          {/* 100% Free Badge */}
+          <div className="flex justify-center mb-8">
+            <div className="bg-green-100 text-green-800 px-6 py-2 rounded-full font-semibold text-lg border border-green-200">
+              💯 100% Free & Open Source
+            </div>
+          </div>
+
           {/* CTA Button */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <a
               href="https://github.com/silverbullet-apps/dont-sleep/releases/download/0.0.1/DontSleep-Installer.dmg"
               className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 inline-block"
@@ -47,6 +54,23 @@ function Home() {
             >
               View on GitHub
             </a>
+          </div>
+
+          {/* Security Notice */}
+          <div className="max-w-2xl mx-auto mb-16">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
+              <div className="flex items-center justify-center mb-2">
+                <svg className="w-5 h-5 text-yellow-600 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                <span className="text-yellow-800 font-semibold">First-time users</span>
+              </div>
+              <p className="text-yellow-700 text-sm">
+                macOS might show a security warning when you first run DontSleep. This is normal! 
+                <br />
+                See our <a href="#faq" className="underline font-medium">FAQ below</a> for the 30-second fix.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -276,6 +300,140 @@ function Home() {
         </div>
       </div>
 
+      {/* FAQ Section */}
+      <div id="faq" className="bg-gray-50 py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-xl text-gray-600">
+              Everything you need to know about DontSleep
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            {/* Security Warning FAQ */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg">
+              <div className="flex items-start space-x-4">
+                <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg className="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                    🔐 macOS says "DontSleep.app cannot be opened" - Is this safe?
+                  </h3>
+                  <div className="text-gray-600 space-y-4">
+                    <p>
+                      <strong>Yes, DontSleep is completely safe!</strong> This security warning appears because 
+                      we're an independent developer who doesn't pay Apple's $99/year certificate fee. The app 
+                      is 100% open source - you can review every line of code on GitHub.
+                    </p>
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <p className="font-semibold text-blue-900 mb-2">Quick Fix (30 seconds):</p>
+                      <ol className="list-decimal list-inside space-y-1 text-blue-800">
+                        <li>Open Terminal (Applications → Utilities → Terminal)</li>
+                        <li>Paste this command: <code className="bg-blue-100 px-2 py-1 rounded text-sm">xattr -dr com.apple.quarantine /Applications/DontSleep.app</code></li>
+                        <li>Press Enter</li>
+                        <li>Double-click DontSleep.app to open it</li>
+                      </ol>
+                    </div>
+                    <p className="text-sm text-gray-500">
+                      Alternative: Right-click the app → "Open" → "Open" (sometimes works)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Free App FAQ */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg">
+              <div className="flex items-start space-x-4">
+                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                    💰 Is DontSleep really free?
+                  </h3>
+                  <div className="text-gray-600 space-y-3">
+                    <p>
+                      <strong>Yes, 100% free forever!</strong> DontSleep is open source software with no hidden costs, 
+                      subscriptions, or premium features. We believe essential Mac utilities should be free for everyone.
+                    </p>
+                    <p>
+                      The security warning you might see is simply because we choose not to pay Apple's $99/year 
+                      developer certificate fee. This keeps the app completely free for users like you.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Usage FAQ */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg">
+              <div className="flex items-start space-x-4">
+                <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg className="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                    🌙 How do I use DontSleep?
+                  </h3>
+                  <div className="text-gray-600 space-y-3">
+                    <p>
+                      After installation, look for the DontSleep icon in your menu bar (top-right of your screen). 
+                      Click it to toggle sleep prevention on/off:
+                    </p>
+                    <ul className="list-disc list-inside space-y-1 ml-4">
+                      <li><strong>🌙 Moon icon:</strong> Sleep prevention is OFF (normal behavior)</li>
+                      <li><strong>☀️ Sun icon:</strong> Sleep prevention is ON (Mac stays awake)</li>
+                    </ul>
+                    <p>
+                      You can also access settings by clicking the icon and selecting "Settings" to configure 
+                      launch at startup and other preferences.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Privacy FAQ */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg">
+              <div className="flex items-start space-x-4">
+                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 1l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 1z"/>
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                    🔒 Does DontSleep collect my data?
+                  </h3>
+                  <div className="text-gray-600 space-y-3">
+                    <p>
+                      <strong>No, absolutely not!</strong> DontSleep is a local-only app that doesn't collect, 
+                      store, or transmit any personal data. It only uses macOS system APIs to prevent sleep 
+                      - nothing more, nothing less.
+                    </p>
+                    <p>
+                      Your privacy is important to us. The app works entirely offline and never connects 
+                      to the internet.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Footer */}
       <div className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -296,9 +454,16 @@ function Home() {
           </div>
 
           <div className="border-t border-gray-800 pt-8">
-            <p className="text-gray-400">
+            <p className="text-gray-400 mb-4">
               © 2025 DontSleep. Made with ❤️ for Mac users.
             </p>
+            <div className="bg-gray-800 rounded-lg p-4 mb-6">
+              <p className="text-gray-300 text-sm">
+                <strong>💯 Always Free:</strong> DontSleep is 100% free and open source. 
+                We don't pay Apple's $99/year certificate fee to keep this app free for everyone. 
+                That's why you might see a security warning - the app is completely safe!
+              </p>
+            </div>
             <div className="mt-4">
               <a
                 href="https://denpo.dev"

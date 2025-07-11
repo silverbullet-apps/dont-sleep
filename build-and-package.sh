@@ -46,12 +46,25 @@ fi
 
 echo "✅ App extracted successfully"
 
-# Step 5: Create professional DMG installer
+# Step 5: Code signing (ad-hoc signing to prevent Gatekeeper issues)
+echo "🔐 Applying ad-hoc code signing..."
+codesign --force --deep --sign - "$EXPORT_DIR/DontSleep.app"
+
+# Verify code signing
+echo "🔍 Verifying code signature..."
+codesign --verify --deep --strict "$EXPORT_DIR/DontSleep.app"
+if [ $? -eq 0 ]; then
+    echo "✅ Code signing successful"
+else
+    echo "⚠️  Code signing verification failed, but app should still work"
+fi
+
+# Step 6: Create professional DMG installer
 echo "🎁 Creating professional DMG installer..."
 chmod +x ./create-dmg.sh
 ./create-dmg.sh
 
-# Step 6: Show final results
+# Step 7: Show final results
 echo ""
 echo "🎉 Build and Package Complete!"
 echo "=============================="
@@ -65,6 +78,11 @@ echo "   • App Bundle: $EXPORT_DIR/DontSleep.app"
 echo "   • DMG Installer: $EXPORT_DIR/DontSleep-Installer.dmg"
 
 echo ""
+echo "🔐 Code Signing Status:"
+codesign -dv --verbose=4 "$EXPORT_DIR/DontSleep.app" 2>&1 | head -5
+
+echo ""
 echo "🚀 Next steps:"
 echo "   • Test the installer: open \"$EXPORT_DIR/DontSleep-Installer.dmg\""
-echo "   • Share the DMG file for easy installation" 
+echo "   • Share the DMG file for easy installation"
+echo "   • Users should see fewer security warnings with ad-hoc signing" 
