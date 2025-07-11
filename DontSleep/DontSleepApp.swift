@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct DontSleepApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        // Return an empty scene since we're using a pure tray app
+        Settings {
+            EmptyView()
         }
     }
 }
