@@ -108,19 +108,53 @@ struct SettingsView: View {
                                 .font(.body)
                                 .foregroundColor(.secondary)
                             
-                            Text("Perfect for:")
+                            Text("Key Features:")
                                 .font(.subheadline)
                                 .fontWeight(.medium)
                             
                             VStack(alignment: .leading, spacing: 4) {
-                                Text("• Watching videos or presentations")
-                                Text("• Long downloads or file transfers")
-                                Text("• Monitoring processes")
-                                Text("• Keeping your screen active during work")
+                                Text("• Always Green in Slack - Stay active in messaging apps")
+                                Text("• Long Downloads - Perfect for large file transfers & backups")
+                                Text("• Monitor Processes - Keep an eye on builds & system tasks")
+                                Text("• Vibe Coding - Don't sleep during AI-assisted coding")
+                                Text("• Menu Bar Integration - Simple toggle with visual indicators")
+                                Text("• Launch at Startup - Start with your Mac automatically")
+                                Text("• Lightweight & Fast - Minimal resource usage")
                             }
                             .font(.body)
                             .foregroundColor(.secondary)
                             .padding(.leading, 8)
+                            
+                            Divider()
+                                .padding(.vertical, 8)
+                            
+                            Text("100% Free & Open Source")
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                                .foregroundColor(.green)
+                            
+                            Text("DontSleep is completely free with no hidden costs or subscriptions. Your privacy is protected - the app works entirely offline.")
+                                .font(.body)
+                                .foregroundColor(.secondary)
+                            
+                            // Link to developer website
+                            HStack {
+                                Text("More apps by Denis:")
+                                    .font(.body)
+                                    .foregroundColor(.secondary)
+                                
+                                Button("denpo.dev") {
+                                    if let url = URL(string: "https://denpo.dev") {
+                                        NSWorkspace.shared.open(url)
+                                    }
+                                }
+                                .foregroundColor(.blue)
+                                .buttonStyle(PlainButtonStyle())
+                                .onHover { hovering in
+                                    NSCursor.pointingHand.set()
+                                }
+                            }
+                            .padding(.top, 4)
                         }
                     }
                 }
