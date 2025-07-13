@@ -1,8 +1,60 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { trackDownload as trackDownloadServerFn } from "./api.download";
 
 export const Route = createFileRoute("/")({
   component: Home,
 });
+
+// Download tracking function
+async function trackDownload(version: string = "0.0.1") {
+  try {
+    const data = await trackDownloadServerFn({ 
+      data: {
+        version,
+        referrer: document.referrer || '',
+      }
+    });
+    
+    return data.downloadUrl || "https://github.com/silverbullet-apps/dont-sleep/releases/download/0.0.1/DontSleep-Installer.dmg";
+  } catch (error) {
+    console.error('Download tracking failed:', error);
+    // Return direct download URL if tracking fails
+    return "https://github.com/silverbullet-apps/dont-sleep/releases/download/0.0.1/DontSleep-Installer.dmg";
+  }
+}
+
+// Download button component
+function DownloadButton({ className, children }: { className: string; children: React.ReactNode }) {
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const handleDownload = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDownloading(true);
+    
+    try {
+      const downloadUrl = await trackDownload();
+      // Open download in new tab
+      window.open(downloadUrl, '_blank');
+    } catch (error) {
+      console.error('Download failed:', error);
+      // Fallback to direct download
+      window.open("https://github.com/silverbullet-apps/dont-sleep/releases/download/0.0.1/DontSleep-Installer.dmg", '_blank');
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  return (
+    <button
+      onClick={handleDownload}
+      disabled={isDownloading}
+      className={className}
+    >
+      {isDownloading ? 'Starting Download...' : children}
+    </button>
+  );
+}
 
 function Home() {
   return (
@@ -40,12 +92,9 @@ function Home() {
 
           {/* CTA Button */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <a
-              href="https://github.com/silverbullet-apps/dont-sleep/releases/download/0.0.1/DontSleep-Installer.dmg"
-              className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 inline-block"
-            >
+            <DownloadButton className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
               Download for macOS
-            </a>
+            </DownloadButton>
             <a
               href="https://github.com/silverbullet-apps/dont-sleep"
               target="_blank"
@@ -445,12 +494,9 @@ function Home() {
               Download DontSleep today and never worry about your Mac sleeping
               at the wrong time.
             </p>
-            <a
-              href="https://github.com/silverbullet-apps/dont-sleep/releases/download/0.0.1/DontSleep-Installer.dmg"
-              className="bg-white text-gray-900 px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 inline-block"
-            >
+            <DownloadButton className="bg-white text-gray-900 px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
               Download Now
-            </a>
+            </DownloadButton>
           </div>
 
           <div className="border-t border-gray-800 pt-8">

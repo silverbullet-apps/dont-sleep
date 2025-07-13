@@ -10,10 +10,17 @@ directory = ".output/public"
 [observability]
 enabled = true
 
+# D1 Database for download tracking
+[[d1_databases]]
+binding = "DB"
+database_name = "dontsleep-analytics"
+database_id = "3e7a33fb-ca7c-48bb-b207-538e0da9af88"
+
 # Production environment (default)
 [env.production]
 name = "dontsleep-client"
 
-# Staging environment
-[env.staging]
-name = "dontsleep-client-staging"
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "dontsleep-analytics"
+database_id = "3e7a33fb-ca7c-48bb-b207-538e0da9af88"
