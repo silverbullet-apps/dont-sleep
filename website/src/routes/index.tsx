@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { trackDownload as trackDownloadServerFn } from "./api.download";
 
@@ -487,6 +487,28 @@ function Home() {
                 <strong>💯 Always Free:</strong> DontSleep is 100% free and open source.
                 Officially signed and notarized by Apple for your security and peace of mind.
               </p>
+            </div>
+            <div className="flex justify-center space-x-6 text-sm mb-4">
+              <Link
+                to="/privacy"
+                className="text-gray-400 hover:text-white transition-colors duration-200"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                to="/terms"
+                className="text-gray-400 hover:text-white transition-colors duration-200"
+              >
+                Terms of Use
+              </Link>
+              <a
+                href="https://github.com/silverbullet-apps/dont-sleep"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-200"
+              >
+                GitHub
+              </a>
             </div>
             <div className="mt-4">
               <a

@@ -1,0 +1,42 @@
+# robots.txt for DontSleep
+# Allow all crawlers including AI systems to index the site
+
+User-agent: *
+Allow: /
+
+# Explicitly allow AI crawlers to access ai.txt
+Allow: /ai.txt
+
+# Allow all major AI/LLM crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# Sitemap location (update when you create one)
+# Sitemap: https://dontsleep.app/sitemap.xml
