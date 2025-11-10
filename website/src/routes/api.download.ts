@@ -3,7 +3,7 @@ import { getWebRequest } from "@tanstack/react-start/server";
 import { createHash } from "node:crypto";
 import { getBindings } from "~/utils/bindings";
 
-const DOWNLOAD_URL = "https://github.com/silverbullet-apps/dont-sleep/releases/download/0.0.1/DontSleep-Installer.dmg";
+const DOWNLOAD_URL = "https://github.com/silverbullet-apps/dont-sleep/releases/download/0.0.2/DontSleep-Installer.dmg";
 
 interface DownloadRequest {
   version?: string;
@@ -67,7 +67,7 @@ export const trackDownload = createServerFn({ method: "POST" })
         userAgent,
         country,
         city,
-        data.version || '0.0.1',
+        data.version || '0.0.2',
         referrer,
         sessionId
       ).run();

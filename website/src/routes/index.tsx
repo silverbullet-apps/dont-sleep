@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
 });
 
 // Download tracking function
-async function trackDownload(version: string = "0.0.1") {
+async function trackDownload(version: string = "0.0.2") {
   try {
     const data = await trackDownloadServerFn({ 
       data: {
@@ -16,11 +16,11 @@ async function trackDownload(version: string = "0.0.1") {
       }
     });
     
-    return data.downloadUrl || "https://github.com/silverbullet-apps/dont-sleep/releases/download/0.0.1/DontSleep-Installer.dmg";
+    return data.downloadUrl || "https://github.com/silverbullet-apps/dont-sleep/releases/download/0.0.2/DontSleep-Installer.dmg";
   } catch (error) {
     console.error('Download tracking failed:', error);
     // Return direct download URL if tracking fails
-    return "https://github.com/silverbullet-apps/dont-sleep/releases/download/0.0.1/DontSleep-Installer.dmg";
+    return "https://github.com/silverbullet-apps/dont-sleep/releases/download/0.0.2/DontSleep-Installer.dmg";
   }
 }
 
@@ -39,7 +39,7 @@ function DownloadButton({ className, children }: { className: string; children: 
     } catch (error) {
       console.error('Download failed:', error);
       // Fallback to direct download
-      window.open("https://github.com/silverbullet-apps/dont-sleep/releases/download/0.0.1/DontSleep-Installer.dmg", '_blank');
+      window.open("https://github.com/silverbullet-apps/dont-sleep/releases/download/0.0.2/DontSleep-Installer.dmg", '_blank');
     } finally {
       setIsDownloading(false);
     }
@@ -105,22 +105,6 @@ function Home() {
             </a>
           </div>
 
-          {/* Security Notice */}
-          <div className="max-w-2xl mx-auto mb-16">
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
-              <div className="flex items-center justify-center mb-2">
-                <svg className="w-5 h-5 text-yellow-600 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                </svg>
-                <span className="text-yellow-800 font-semibold">First-time users</span>
-              </div>
-              <p className="text-yellow-700 text-sm">
-                macOS might show a security warning when you first run DontSleep. This is normal! 
-                <br />
-                See our <a href="#faq" className="underline font-medium">FAQ below</a> for the 30-second fix.
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* Features Grid */}
@@ -362,35 +346,30 @@ function Home() {
           </div>
 
           <div className="space-y-8">
-            {/* Security Warning FAQ */}
+            {/* Official Signing FAQ */}
             <div className="bg-white rounded-2xl p-8 shadow-lg">
               <div className="flex items-start space-x-4">
-                <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                   </svg>
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                    🔐 macOS says "DontSleep.app cannot be opened" - Is this safe?
+                    🔐 Is DontSleep officially signed and notarized?
                   </h3>
                   <div className="text-gray-600 space-y-4">
                     <p>
-                      <strong>Yes, DontSleep is completely safe!</strong> This security warning appears because 
-                      we're an independent developer who doesn't pay Apple's $99/year certificate fee. The app 
-                      is 100% open source - you can review every line of code on GitHub.
+                      <strong>Yes!</strong> DontSleep is officially signed with an Apple Developer ID certificate
+                      and notarized by Apple. This means:
                     </p>
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                      <p className="font-semibold text-blue-900 mb-2">Quick Fix (30 seconds):</p>
-                      <ol className="list-decimal list-inside space-y-1 text-blue-800">
-                        <li>Open Terminal (Applications → Utilities → Terminal)</li>
-                        <li>Paste this command: <code className="bg-blue-100 px-2 py-1 rounded text-sm">xattr -dr com.apple.quarantine /Applications/DontSleep.app</code></li>
-                        <li>Press Enter</li>
-                        <li>Double-click DontSleep.app to open it</li>
-                      </ol>
-                    </div>
-                    <p className="text-sm text-gray-500">
-                      Alternative: Right-click the app → "Open" → "Open" (sometimes works)
+                    <ul className="list-disc list-inside space-y-2 ml-4">
+                      <li><strong>No security warnings:</strong> macOS recognizes DontSleep as a trusted application from an identified developer</li>
+                      <li><strong>Verified by Apple:</strong> The app has been scanned and approved by Apple's automated security systems</li>
+                      <li><strong>Safe to install:</strong> You can download and run DontSleep immediately without any workarounds</li>
+                    </ul>
+                    <p className="text-sm text-gray-500 mt-4">
+                      DontSleep is 100% open source, so you can always review the code on GitHub to verify what it does.
                     </p>
                   </div>
                 </div>
@@ -411,12 +390,12 @@ function Home() {
                   </h3>
                   <div className="text-gray-600 space-y-3">
                     <p>
-                      <strong>Yes, 100% free forever!</strong> DontSleep is open source software with no hidden costs, 
+                      <strong>Yes, 100% free forever!</strong> DontSleep is open source software with no hidden costs,
                       subscriptions, or premium features. We believe essential Mac utilities should be free for everyone.
                     </p>
                     <p>
-                      The security warning you might see is simply because we choose not to pay Apple's $99/year 
-                      developer certificate fee. This keeps the app completely free for users like you.
+                      The app is officially signed and notarized by Apple, giving you peace of mind while keeping
+                      it completely free for users like you.
                     </p>
                   </div>
                 </div>
@@ -505,9 +484,8 @@ function Home() {
             </p>
             <div className="bg-gray-800 rounded-lg p-4 mb-6">
               <p className="text-gray-300 text-sm">
-                <strong>💯 Always Free:</strong> DontSleep is 100% free and open source. 
-                We don't pay Apple's $99/year certificate fee to keep this app free for everyone. 
-                That's why you might see a security warning - the app is completely safe!
+                <strong>💯 Always Free:</strong> DontSleep is 100% free and open source.
+                Officially signed and notarized by Apple for your security and peace of mind.
               </p>
             </div>
             <div className="mt-4">
